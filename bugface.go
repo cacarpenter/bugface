@@ -50,7 +50,6 @@ func (*bfScene) Setup(u engo.Updater) {
 		switch sys := system.(type) {
 		case *common.RenderSystem:
 			bugfaceSystem.AddToSystem(sys)
-			// sys.Add(&game.Bugface.BasicEntity, &game.Bugface.RenderComponent, &game.Bugface.SpaceComponent)
 		}
 	}
 }

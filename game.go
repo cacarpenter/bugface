@@ -9,11 +9,11 @@ import (
 
 type BugfaceGame struct {
 	BugTexture *common.Texture
-	player model.Bugface
+	player *model.Bugface
 }
 
 func NewGame(playerTexture *common.Texture) BugfaceGame {
-	player := model.Bugface{BasicEntity: ecs.NewBasic()}
+	player := &model.Bugface{BasicEntity: ecs.NewBasic()}
 
 	// Initialize the components, set scale to 8x
 	player.RenderComponent = common.RenderComponent{
@@ -32,5 +32,8 @@ func NewGame(playerTexture *common.Texture) BugfaceGame {
 
 func (bfs *BugfaceSystem) RotatePlayer(f float32) {
 	bfs.player.Rotation = bfs.player.Rotation + f
+}
 
+func (bfs *BugfaceSystem) MovePlayer(f float32) {
+	bfs.player.SpaceComponent.Position.Y = bfs.player.SpaceComponent.Position.Y + f
 }

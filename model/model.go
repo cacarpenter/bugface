@@ -28,7 +28,7 @@ const (
 )
 
 
-type Position struct {
+type MazePosition struct {
 	X, Y int
 }
 
@@ -39,12 +39,12 @@ type Bugface struct {
 	common.SpaceComponent
 
 	Direction
-	Position
+	MazePosition
 	Invincible bool
 }
 
 type Enemy struct {
-	Position
+	MazePosition
 	Direction
 	PrevDir Direction
 }
@@ -58,5 +58,5 @@ type Board struct {
 	//Maze          [60][40]BlockType
 	// odd shaped board
 	Maze          [40][60]BlockType
-	StartingPoint Position
+	StartingPoint MazePosition
 }

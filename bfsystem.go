@@ -33,13 +33,20 @@ func (*BugfaceSystem) Remove(ecs.BasicEntity) {
 }
 
 func (bfs *BugfaceSystem) Update(dt float32) {
-	if engo.Input.Button(model.MOVE_LEFT).JustPressed() {
-		fmt.Println("LEFT Pressed")
+	if engo.Input.Button(model.MOVE_LEFT).Down() {
 		bfs.RotatePlayer(-5)
 	}
-	if engo.Input.Button(model.MOVE_RIGHT).JustPressed() {
-		fmt.Println("RIGHT Pressed")
+	if engo.Input.Button(model.MOVE_RIGHT).Down() {
 		bfs.RotatePlayer(5)
+	}
+	if engo.Input.Button(model.MOVE_UP).Down() {
+		bfs.MovePlayer(10)
+	}
+	if engo.Input.Button(model.MOVE_DOWN).Down() {
+		bfs.MovePlayer(-10)
+	}
+	if engo.Input.Button(model.EXIT).JustPressed() {
+		fmt.Println("Exit")
 	}
 }
 
