@@ -27,7 +27,6 @@ const (
 	VerticalDoor
 )
 
-
 type MazePosition struct {
 	X, Y int
 }
@@ -47,11 +46,6 @@ type Enemy struct {
 	MazePosition
 	Direction
 	PrevDir Direction
-}
-
-type Game struct {
-	Points       int
-	CurrentLevel int
 }
 
 type Board struct {

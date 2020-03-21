@@ -10,6 +10,9 @@ import (
 type BugfaceGame struct {
 	BugTexture *common.Texture
 	player *model.Bugface
+
+	Points       int
+	CurrentLevel int
 }
 
 func NewGame(playerTexture *common.Texture) BugfaceGame {
@@ -18,16 +21,16 @@ func NewGame(playerTexture *common.Texture) BugfaceGame {
 	// Initialize the components, set scale to 8x
 	player.RenderComponent = common.RenderComponent{
 		Drawable: playerTexture,
-		Scale:    engo.Point{0.1, 0.1},
+		Scale:    engo.Point{X: DEFAULT_SCALE, Y: DEFAULT_SCALE},
 	}
 	player.SpaceComponent = common.SpaceComponent{
 		Position: engo.Point{204, 190},
 		Width:    playerTexture.Width() * player.RenderComponent.Scale.X,
 		Height:   playerTexture.Height() * player.RenderComponent.Scale.Y,
-		Rotation: 30,
+		Rotation: 0,
 	}
 
-	return BugfaceGame{playerTexture, player}
+	return BugfaceGame{playerTexture, player, 0, 0}
 }
 
 func (bfs *BugfaceSystem) RotatePlayer(f float32) {

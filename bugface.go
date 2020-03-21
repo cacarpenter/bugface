@@ -1,10 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/EngoEngine/ecs"
 	"github.com/EngoEngine/engo"
 	"github.com/EngoEngine/engo/common"
-	"github.com/cacarpenter/bugface/model"
 	"image/color"
 	"log"
 )
@@ -16,17 +16,17 @@ func (*bfScene) Type() string { return "Bugface" }
 
 // preload assets
 func (*bfScene) Preload() {
-	engo.Files.Load("bug.png")
+	engo.Files.Load(PLAYER_TEXTURE_FILE)
 }
 
 func (*bfScene) Setup(u engo.Updater) {
 
 	rb := engo.Input.RegisterButton
-	rb(model.MOVE_LEFT, engo.KeyA, engo.KeyArrowLeft)
-	rb(model.MOVE_RIGHT, engo.KeyD, engo.KeyArrowRight)
-	rb(model.MOVE_UP, engo.KeyW, engo.KeyArrowUp)
-	rb(model.MOVE_DOWN, engo.KeyS, engo.KeyArrowDown)
-	rb(model.EXIT, engo.KeyEscape)
+	rb(MOVE_LEFT, engo.KeyA, engo.KeyArrowLeft)
+	rb(MOVE_RIGHT, engo.KeyD, engo.KeyArrowRight)
+	rb(MOVE_UP, engo.KeyW, engo.KeyArrowUp)
+	rb(MOVE_DOWN, engo.KeyS, engo.KeyArrowDown)
+	rb(EXIT, engo.KeyEscape)
 
 	w, _ := u.(*ecs.World)
 
@@ -37,10 +37,12 @@ func (*bfScene) Setup(u engo.Updater) {
 	w.AddSystem(&bugfaceSystem)
 
 	// Retrieve a bugTexture
-	bugTexture, err := common.LoadedSprite("bug.png")
+	bugTexture, err := common.LoadedSprite(PLAYER_TEXTURE_FILE)
 	if err != nil {
-		log.Println(err)
+		log.Println(err, " bye")
+		engo.Exit()
 	}
+	fmt.Printf("h = %v, w = %v\n", bugTexture.Height(), bugTexture.Width())
 
 	game := NewGame(bugTexture)
 	bugfaceSystem.BugfaceGame = &game
