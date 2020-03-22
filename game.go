@@ -4,6 +4,7 @@ import (
 	"github.com/EngoEngine/ecs"
 	"github.com/EngoEngine/engo"
 	"github.com/EngoEngine/engo/common"
+	"github.com/cacarpenter/bugface/bf"
 	"github.com/cacarpenter/bugface/model"
 )
 
@@ -21,7 +22,7 @@ func NewGame(playerTexture *common.Texture) BugfaceGame {
 	// Initialize the components, set scale to 8x
 	player.RenderComponent = common.RenderComponent{
 		Drawable: playerTexture,
-		Scale:    engo.Point{X: DEFAULT_SCALE, Y: DEFAULT_SCALE},
+		Scale:    engo.Point{X: bf.DEFAULT_SCALE, Y: bf.DEFAULT_SCALE},
 	}
 	player.SpaceComponent = common.SpaceComponent{
 		Position: engo.Point{204, 190},

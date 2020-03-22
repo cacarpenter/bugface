@@ -1,4 +1,4 @@
-package main
+package bf
 
 // key names
 const (
@@ -9,6 +9,7 @@ const (
 	EXIT       = "EXIT"
 
 	PLAYER_TEXTURE_FILE = "sprites/bug-128x128.png"
+	TERRAIN_TEXTURE_SHEET_FILE = "sprites/terrain_atlas.png"
 
 	DEFAULT_SCALE = 0.5
 )

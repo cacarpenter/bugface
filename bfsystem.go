@@ -5,6 +5,7 @@ import (
 	"github.com/EngoEngine/ecs"
 	"github.com/EngoEngine/engo"
 	"github.com/EngoEngine/engo/common"
+	"github.com/cacarpenter/bugface/bf"
 	"github.com/cacarpenter/bugface/model"
 )
 
@@ -33,19 +34,19 @@ func (*BugfaceSystem) Remove(ecs.BasicEntity) {
 }
 
 func (bfs *BugfaceSystem) Update(dt float32) {
-	if engo.Input.Button(MOVE_LEFT).Down() {
+	if engo.Input.Button(bf.MOVE_LEFT).Down() {
 		bfs.RotatePlayer(-5)
 	}
-	if engo.Input.Button(MOVE_RIGHT).Down() {
+	if engo.Input.Button(bf.MOVE_RIGHT).Down() {
 		bfs.RotatePlayer(5)
 	}
-	if engo.Input.Button(MOVE_UP).Down() {
+	if engo.Input.Button(bf.MOVE_UP).Down() {
 		bfs.MovePlayer(10)
 	}
-	if engo.Input.Button(MOVE_DOWN).Down() {
+	if engo.Input.Button(bf.MOVE_DOWN).Down() {
 		bfs.MovePlayer(-10)
 	}
-	if engo.Input.Button(EXIT).JustPressed() {
+	if engo.Input.Button(bf.EXIT).JustPressed() {
 		fmt.Println("Exit")
 		engo.Exit()
 	}
