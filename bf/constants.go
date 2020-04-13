@@ -11,5 +11,5 @@ const (
 	PLAYER_TEXTURE_FILE = "sprites/bug-128x128.png"
 	TERRAIN_TEXTURE_SHEET_FILE = "sprites/terrain_atlas.png"
 
-	DEFAULT_SCALE = 0.5
+	DEFAULT_SCALE = 2.5
 )

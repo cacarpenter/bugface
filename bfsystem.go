@@ -29,6 +29,11 @@ type BugfaceSystem struct {
 	*BugfaceGame
 }
 
+func (b *BugfaceSystem) New() {
+	b.mouseTracker.BasicEntity = ecs.NewBasic()
+	b.mouseTracker.MouseComponent = common.MouseComponent{Track: true}
+}
+
 func (*BugfaceSystem) Remove(ecs.BasicEntity) {
 	fmt.Println("BugfaceSystem.Remove")
 }

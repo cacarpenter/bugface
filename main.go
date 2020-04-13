@@ -6,7 +6,6 @@ import (
 	"github.com/EngoEngine/engo"
 	"github.com/EngoEngine/engo/common"
 	"github.com/cacarpenter/bugface/bf"
-	"github.com/cacarpenter/bugface/terrain"
 	"image/color"
 	"log"
 )
@@ -22,10 +21,6 @@ func (*bfScene) Preload() {
 }
 
 func (*bfScene) Setup(u engo.Updater) {
-	//terrainSheet := common.NewAsymmetricSpritesheetFromFile(bf.TERRAIN_TEXTURE_SHEET_FILE, spriteRegions)
-	terr := terrain.NewTerrain()
-	first := terr.TryMe()
-
 	rb := engo.Input.RegisterButton
 	rb(bf.MOVE_LEFT, engo.KeyA, engo.KeyArrowLeft)
 	rb(bf.MOVE_RIGHT, engo.KeyD, engo.KeyArrowRight)
@@ -39,6 +34,7 @@ func (*bfScene) Setup(u engo.Updater) {
 
 	bugfaceSystem := BugfaceSystem{}
 	w.AddSystem(&common.RenderSystem{})
+	w.AddSystem(&common.MouseSystem{})
 	w.AddSystem(&bugfaceSystem)
 
 	// Retrieve a bugTexture
@@ -49,7 +45,7 @@ func (*bfScene) Setup(u engo.Updater) {
 	}
 	fmt.Printf("h = %v, w = %v\n", bugTexture.Height(), bugTexture.Width())
 
-	game := NewGame(&first) //bugTexture)
+	game := NewGame() //bugTexture)
 	bugfaceSystem.BugfaceGame = &game
 
 	// Add it to appropriate systems

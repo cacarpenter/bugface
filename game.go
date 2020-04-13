@@ -6,18 +6,22 @@ import (
 	"github.com/EngoEngine/engo/common"
 	"github.com/cacarpenter/bugface/bf"
 	"github.com/cacarpenter/bugface/model"
+	"github.com/cacarpenter/bugface/terrain"
 )
 
 type BugfaceGame struct {
-	BugTexture *common.Texture
+	//BugTexture *common.Texture
 	player *model.Bugface
 
 	Points       int
 	CurrentLevel int
 }
 
-func NewGame(playerTexture *common.Texture) BugfaceGame {
+func NewGame() BugfaceGame {
 	player := &model.Bugface{BasicEntity: ecs.NewBasic()}
+
+	terr := terrain.NewTerrain()
+	playerTexture := terr.TrySome(terrain.EASTER_ISLAND_HEAD)
 
 	// Initialize the components, set scale to 8x
 	player.RenderComponent = common.RenderComponent{
@@ -31,7 +35,7 @@ func NewGame(playerTexture *common.Texture) BugfaceGame {
 		Rotation: 0,
 	}
 
-	return BugfaceGame{playerTexture, player, 0, 0}
+	return BugfaceGame{ player, 0, 0}
 }
 
 func (bfs *BugfaceSystem) RotatePlayer(f float32) {
